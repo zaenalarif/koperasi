@@ -15,7 +15,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::get();
+        $members = Member::with("tabungan")->get();
         
         return view('member.index', compact('members'));
     }

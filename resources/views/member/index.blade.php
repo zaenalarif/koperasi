@@ -27,11 +27,20 @@
             <tbody>
             @foreach ($members as $member)
             <tr>
-                <td>{{ $member->tabungan->norekening }}</td>
-                <td>{{ $member->ktp }}</td>
-                <td>{{ $member->nama}}</td>
-                <td>{{ $member->alamat}}</td>
-                <td>{{ $member->tabungan->saldo }}</td>
+                @if ($member->tabungan != null)
+                  <td>{{ $member->tabungan->norekening }}</td>
+                  <td>{{ $member->ktp }}</td>
+                  <td>{{ $member->nama}}</td>
+                  <td>{{ $member->alamat}}</td>
+                  <td>{{ $member->tabungan->saldo }}</td>
+                @else
+                  <td>Belum membuat rekening</td>
+                  <td>{{ $member->ktp }}</td>
+                  <td>{{ $member->nama}}</td>
+                  <td>{{ $member->alamat}}</td>
+                  <td>Belum membuat rekening</td>
+                @endif
+
                 <td>
                     <a href="/member/{{ $member->id }}/edit" class="btn btn-primary btn-sm">edit</a>
                     <form action="/member/{{$member->id}}" style="display: inline" method="POST">
